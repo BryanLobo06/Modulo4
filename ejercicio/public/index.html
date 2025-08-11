@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestión de Biblioteca</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fas fa-book-open"></i> Sistema de Gestión de Biblioteca</h1>
+            <p>Gestiona empleados, estudiantes, libros y préstamos de manera eficiente</p>
+        </header>
+
+        <nav class="nav-tabs">
+            <button class="tab-btn active" data-tab="empleados">
+                <i class="fas fa-users"></i> Empleados
+            </button>
+            <button class="tab-btn" data-tab="estudiantes">
+                <i class="fas fa-user-graduate"></i> Estudiantes
+            </button>
+            <button class="tab-btn" data-tab="libros">
+                <i class="fas fa-book"></i> Libros
+            </button>
+            <button class="tab-btn" data-tab="prestamos">
+                <i class="fas fa-exchange-alt"></i> Préstamos
+            </button>
+        </nav>
+
+        <main class="main-content">
+            <!-- Sección Empleados -->
+            <section id="empleados" class="tab-content active">
+                <div class="section-header">
+                    <h2>Gestión de Empleados</h2>
+                    <button class="btn btn-primary" id="btn-nuevo-empleado">
+                        <i class="fas fa-plus"></i> Nuevo Empleado
+                    </button>
+                </div>
+                <div class="table-container">
+                    <table id="empleados-table" class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Sección Estudiantes -->
+            <section id="estudiantes" class="tab-content">
+                <div class="section-header">
+                    <h2>Gestión de Estudiantes</h2>
+                    <button class="btn btn-primary" id="btn-nuevo-estudiante">
+                        <i class="fas fa-plus"></i> Nuevo Estudiante
+                    </button>
+                </div>
+                <div class="table-container">
+                    <table id="estudiantes-table" class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Carrera</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Sección Libros -->
+            <section id="libros" class="tab-content">
+                <div class="section-header">
+                    <h2>Gestión de Libros</h2>
+                    <button class="btn btn-primary" id="btn-nuevo-libro">
+                        <i class="fas fa-plus"></i> Nuevo Libro
+                    </button>
+                </div>
+                <div class="table-container">
+                    <table id="libros-table" class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ISBN</th>
+                                <th>Título</th>
+                                <th>Autor</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Sección Préstamos -->
+            <section id="prestamos" class="tab-content">
+                <div class="section-header">
+                    <h2>Gestión de Préstamos</h2>
+                    <button class="btn btn-primary" id="btn-nuevo-prestamo">
+                        <i class="fas fa-plus"></i> Nuevo Préstamo
+                    </button>
+                </div>
+                <div class="table-container">
+                    <table id="prestamos-table" class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Estudiante</th>
+                                <th>Libro</th>
+                                <th>Fecha Préstamo</th>
+                                <th>Fecha Devolución</th>
+                                <th>Empleado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modales -->
+    <!-- Modal Empleado -->
+    <div id="empleado-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="empleado-modal-title">Nuevo Empleado</h3>
+                <span class="close" id="close-empleado">&times;</span>
+            </div>
+            <form id="empleado-form" class="modal-form">
+                <div class="form-group">
+                    <label for="empleado-nombre">Nombre:</label>
+                    <input type="text" id="empleado-nombre" name="nombre_empleado" required>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancel-empleado">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Estudiante -->
+    <div id="estudiante-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="estudiante-modal-title">Nuevo Estudiante</h3>
+                <span class="close" id="close-estudiante">&times;</span>
+            </div>
+            <form id="estudiante-form" class="modal-form">
+                <div class="form-group">
+                    <label for="estudiante-id">ID Estudiante:</label>
+                    <input type="number" id="estudiante-id" name="id_estudiante" required>
+                </div>
+                <div class="form-group">
+                    <label for="estudiante-nombre">Nombre:</label>
+                    <input type="text" id="estudiante-nombre" name="nombre_estudiante" required>
+                </div>
+                <div class="form-group">
+                    <label for="estudiante-carrera">Carrera:</label>
+                    <input type="text" id="estudiante-carrera" name="carrera" required>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancel-estudiante">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Libro -->
+    <div id="libro-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="libro-modal-title">Nuevo Libro</h3>
+                <span class="close" id="close-libro">&times;</span>
+            </div>
+            <form id="libro-form" class="modal-form">
+                <div class="form-group">
+                    <label for="libro-isbn">ISBN:</label>
+                    <input type="text" id="libro-isbn" name="isbn" required>
+                </div>
+                <div class="form-group">
+                    <label for="libro-titulo">Título:</label>
+                    <input type="text" id="libro-titulo" name="titulo" required>
+                </div>
+                <div class="form-group">
+                    <label for="libro-autor">Autor:</label>
+                    <input type="text" id="libro-autor" name="autor" required>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancel-libro">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Préstamo -->
+    <div id="prestamo-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="prestamo-modal-title">Nuevo Préstamo</h3>
+                <span class="close" id="close-prestamo">&times;</span>
+            </div>
+            <form id="prestamo-form" class="modal-form">
+                <div class="form-group">
+                    <label for="prestamo-estudiante">Estudiante:</label>
+                    <select id="prestamo-estudiante" name="id_estudiante" required></select>
+                </div>
+                <div class="form-group">
+                    <label for="prestamo-libro">Libro:</label>
+                    <select id="prestamo-libro" name="isbn" required></select>
+                </div>
+                <div class="form-group">
+                    <label for="prestamo-fecha">Fecha de Préstamo:</label>
+                    <input type="date" id="prestamo-fecha" name="fecha_prestamo" required>
+                </div>
+                <div class="form-group">
+                    <label for="prestamo-devolucion">Fecha de Devolución:</label>
+                    <input type="date" id="prestamo-devolucion" name="fecha_devolucion">
+                </div>
+                <div class="form-group">
+                    <label for="prestamo-empleado">Empleado Responsable:</label>
+                    <select id="prestamo-empleado" name="id_empleado_responsable" required></select>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancel-prestamo">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast para notificaciones -->
+    <div id="toast" class="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
