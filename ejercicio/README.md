@@ -43,7 +43,7 @@ Desarrollada con Node.js, Express, MySQL y tecnologías web modernas.
 
 ### 1. Clonar el repositorio
 ```bash
-git clone <url-del-repositorio>
+git clone https://github.com/BryanLobo06/Modulo4.git
 cd biblioteca-app
 ```
 
@@ -197,4 +197,5 @@ PORT=3001
 ```bash
 rm -rf node_modules package-lock.json
 npm install
+
 ```
